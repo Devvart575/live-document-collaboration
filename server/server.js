@@ -98,7 +98,7 @@ wss.on("connection", (socket) => {
 
   // Handle disconnects
   socket.on("close", () => {
-     console.log("❌ Client disconnected");
+     console.log("Client disconnected");
     if (socket.room && rooms[socket.room]) {
       rooms[socket.room].delete(socket);
 

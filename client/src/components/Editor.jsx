@@ -17,7 +17,7 @@ import {
 export default function Editor({ username, room, onLeave }) {
   const socketRef = useRef(null);
 
-  // ✅ Initialize TipTap Editor
+  // Initialize TipTap Editor
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -49,12 +49,12 @@ export default function Editor({ username, room, onLeave }) {
     },
   });
 
-  // ✅ WebSocket connection
+  //  WebSocket connection
   useEffect(() => {
     socketRef.current = new WebSocket("ws://localhost:8080");
 
     socketRef.current.onopen = () => {
-      console.log("✅ Connected to WebSocket");
+      console.log("Connected to WebSocket");
       socketRef.current.send(
         JSON.stringify({ type: "join-room", room, name: username })
       );
@@ -72,18 +72,18 @@ export default function Editor({ username, room, onLeave }) {
       }
 
       if (msg.type === "info") {
-        console.log("ℹ️", msg.text);
+        console.log("hey", msg.text);
       }
     };
 
     socketRef.current.onclose = () => {
-      console.log("❌ Disconnected from WebSocket");
+      console.log("Disconnected from WebSocket");
     };
 
     return () => socketRef.current?.close();
   }, [username, room, editor]);
 
-  // ✅ Helper: add image via URL prompt
+  // Helper: add image via URL prompt
   const addImage = () => {
     const url = window.prompt("Enter image URL:");
     if (url) {
@@ -91,7 +91,7 @@ export default function Editor({ username, room, onLeave }) {
     }
   };
 
-  // ✅ Helper: add link
+  // Helper: add link
   const addLink = () => {
     const url = window.prompt("Enter link URL:");
     if (url) {
